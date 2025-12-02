@@ -7,7 +7,7 @@ from pyneng_common_functions import unified_columns_output
 
 def test_task_stdout(capsys):
     """
-    Перевірка роботи завдання
+    Проверка работы задания
     """
     import task_4_6
 
@@ -19,11 +19,9 @@ def test_task_stdout(capsys):
         "Last update           3d18h\n"
         "Outbound Interface    FastEthernet0/0\n"
     )
-    assert out, (
-        "Нічого не виведено стандартний потік виведення. Потрібно не лише "
-        "отримати потрібний результат, але й вивести його на стандартний потік "
-        "виведення за допомогою print"
-    )
+    assert (
+        out
+    ), "Ничего не выведено на стандартный поток вывода. Надо не только получить нужный результат, но и вывести его на стандартный поток вывода с помощью print"
     assert correct_stdout == unified_columns_output(
         out.strip()
-    ), "На стандартний потік виведення виводиться неправильний рядок"
+    ), "На стандартный поток вывода выводится неправильная строка"
