@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 """
-Завдання 5.0
+Задание 5.0
 
-Пройти всі питання в pquiz по розділу 05.
-Перед проходженням питань оновити pynenguk-quiz:
-$ pip install -U pynenguk-quiz
+Пройти все вопросы в pquiz по разделу 05.
+Перед прохождением вопросов обновить pyneng-quiz:
+$ pip install -U pyneng-quiz
 
 Запуск:
 $ pquiz

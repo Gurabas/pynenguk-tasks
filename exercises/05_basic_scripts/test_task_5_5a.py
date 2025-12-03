@@ -15,11 +15,12 @@ def monkey_input_access(prompt):
     elif monkey_input_access.total_calls == 2:
         return "Gi0/3"
     elif monkey_input_access.total_calls == 3:
-        if "vlan number" in prompt.lower():
+        if "номер vlan" in prompt.lower():
             return "55"
         else:
             pytest.fail(
-                "Для access портів запит вланів має бути таким:" "Enter VLAN number:"
+                "Для access портов запрос вланов должен быть таким: "
+                "Введите номер VLAN:"
             )
 
 
@@ -31,18 +32,18 @@ def monkey_input_trunk(prompt):
     elif monkey_input_trunk.total_calls == 2:
         return "Gi0/2"
     elif monkey_input_trunk.total_calls == 3:
-        if "allowed vlans" in prompt.lower():
+        if "разрешенные vlanы" in prompt.lower():
             return "10,11,12"
         else:
             pytest.fail(
-                "Для trunk портів запит вланів має бути таким:"
-                "Enter the allowed VLANs:"
+                "Для trunk портов запрос вланов должен быть таким: "
+                "Введите разрешенные VLANы:"
             )
 
 
 def test_task_access(capsys, monkeypatch):
     """
-    Перевірка роботи завдання при введенні access
+    Проверка работы задания при вводе access
     """
     monkeypatch.setattr("builtins.input", monkey_input_access)
     import task_5_5a
@@ -59,15 +60,15 @@ def test_task_access(capsys, monkeypatch):
 
     assert (
         out
-    ), "Нічого не виведено стандартний потік виведення. Потрібно не лише отримати потрібний результат, але й вивести його на стандартний потік виведення за допомогою print"
+    ), "Ничего не выведено на стандартный поток вывода. Надо не только получить нужный результат, но и вывести его на стандартный поток вывода с помощью print"
     assert (
         correct_stdout == out.strip()
-    ), "На стандартний потік виведення виводиться неправильний вивід"
+    ), "На стандартный поток вывода выводится неправильный вывод"
 
 
 def test_task_trunk(capsys, monkeypatch):
     """
-    Перевірка роботи завдання при введенні trunk
+    Проверка работы задания при вводе trunk
     """
     monkeypatch.setattr("builtins.input", monkey_input_trunk)
     if sys.modules.get("task_5_5a"):
@@ -83,7 +84,7 @@ def test_task_trunk(capsys, monkeypatch):
     )
     assert (
         out
-    ), "Нічого не виведено стандартний потік виведення. Потрібно не лише отримати потрібний результат, але й вивести його на стандартний потік виведення за допомогою print"
+    ), "Ничего не выведено на стандартный поток вывода. Надо не только получить нужный результат, но и вывести его на стандартный поток вывода с помощью print"
     assert (
         correct_stdout == out.strip()
-    ), "На стандартний потік виведення виводиться неправильний вивід"
+    ), "На стандартный поток вывода выводится неправильный вывод"
