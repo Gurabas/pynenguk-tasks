@@ -29,3 +29,9 @@ $ python task_11.py
 """
 colors = ["Green", 'RED', 'Pink', 'YELLOW', 'white', 'Black']
 
+user_color = input("Введите цвет: ")
+
+if user_color.lower() in [color.lower() for color in colors]:
+    print("Такой цвет есть")
+else:
+    print("В списке нет такого цвета")
