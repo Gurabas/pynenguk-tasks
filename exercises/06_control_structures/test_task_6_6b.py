@@ -16,7 +16,7 @@ import pytest
 )
 def test_task_correct_ip(capsys, monkeypatch, ip_add, ip_type):
     """
-    Перевірка роботи завдання при вводе multicast адреса
+    Проверка работы задания при вводе multicast адреса
     """
     monkeypatch.setattr("builtins.input", lambda x=None: ip_add)
     if sys.modules.get("task_6_6b"):
@@ -25,14 +25,12 @@ def test_task_correct_ip(capsys, monkeypatch, ip_add, ip_type):
 
     out, err = capsys.readouterr()
     correct_stdout = ip_type
-    assert out, (
-        "Нічого не виведено стандартний потік виведення. Потрібно не лише "
-        "отримати потрібний результат, але й вивести його на стандартний потік "
-        "виведення за допомогою print"
-    )
+    assert (
+        out
+    ), "Ничего не выведено на стандартный поток вывода. Надо не только получить нужный результат, но и вывести его на стандартный поток вывода с помощью print"
     assert (
         correct_stdout == out.strip()
-    ), "На стандартний потік виведення виводиться неправильний вивід"
+    ), "На стандартный поток вывода выводится неправильный вывод"
 
 
 def count_calls(func):
@@ -59,8 +57,8 @@ def monkey_input_ip(ip_add):
             return "10.1.1.1"
         else:
             pytest.fail(
-                "Код зациклився. Запит адреси у користувача повинен зупинитися "
-                "після введення правильної адреси."
+                "Код зациклился. Запрос адреса у пользователя должен "
+                "остановиться после того как был введен правильный адрес."
             )
 
     return inner
@@ -69,17 +67,17 @@ def monkey_input_ip(ip_add):
 @pytest.mark.parametrize(
     "ip_add,ip_type",
     [
-        ("10.1.1", "wrong ip address"),
-        ("10.a.2.a", "wrong ip address"),
-        ("10.1.1.1.1", "wrong ip address"),
-        ("10.1.1.", "wrong ip address"),
-        ("300.1.1.1", "wrong ip address"),
-        ("30,1.1.1.1", "wrong ip address"),
+        ("10.1.1", "неправильный ip-адрес"),
+        ("10.a.2.a", "неправильный ip-адрес"),
+        ("10.1.1.1.1", "неправильный ip-адрес"),
+        ("10.1.1.", "неправильный ip-адрес"),
+        ("300.1.1.1", "неправильный ip-адрес"),
+        ("30,1.1.1.1", "неправильный ip-адрес"),
     ],
 )
 def test_task_wrong_first_ip_correct_second(capsys, monkeypatch, ip_add, ip_type):
     """
-    Перевірка роботи завдання при вводе multicast адреса
+    Проверка работы задания при вводе multicast адреса
     """
     monkeypatch.setattr("builtins.input", monkey_input_ip(ip_add))
     if sys.modules.get("task_6_6b"):
@@ -88,11 +86,9 @@ def test_task_wrong_first_ip_correct_second(capsys, monkeypatch, ip_add, ip_type
 
     out, err = capsys.readouterr()
     correct_stdout = f"{ip_type}\nunicast"
-    assert out, (
-        "Нічого не виведено стандартний потік виведення. Потрібно не лише "
-        "отримати потрібний результат, але й вивести його на стандартний потік "
-        "виведення за допомогою print"
-    )
+    assert (
+        out
+    ), "Ничего не выведено на стандартный поток вывода. Надо не только получить нужный результат, но и вывести его на стандартный поток вывода с помощью print"
     assert (
         correct_stdout == out.strip().lower()
-    ), "На стандартний потік виведення виводиться неправильний вивід"
+    ), "На стандартный поток вывода выводится неправильный вывод"
